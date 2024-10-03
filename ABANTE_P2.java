@@ -9,13 +9,15 @@ public class ABANTE_P2 {
         double input2 = 0;
         double result;
         String choice;
-        char operation;
+        String operation;
+
+
 
         // loop
         while (gameRunning) {
             boolean validInput = false;
 
-            // Get first number with validation
+            //to get valid inout
             while (!validInput) {
                 try {
                     System.out.println("Please enter the first number: ");
@@ -23,13 +25,13 @@ public class ABANTE_P2 {
                     validInput = true;
                 } catch (InputMismatchException e) {
                     System.out.println("ERROR! Please enter a valid whole or decimal number.");
-                    scanner.next(); // Clear invalid input
+                    scanner.next();
                 }
             }
+            // Reset
+            validInput = false;
 
-            validInput = false; // Reset for second number validation
-
-            // Get second number with validation
+            // to get valid input of 2nd number
             while (!validInput) {
                 try {
                     System.out.println("Please enter the second number: ");
@@ -41,22 +43,26 @@ public class ABANTE_P2 {
                 }
             }
 
-            // Get operator
-            System.out.println("Choose an operator (+, -, *, /): ");
-            operation = scanner.next().charAt(0);
 
-            // Perform operation
+            System.out.println("Choose an operator (+, -, *, /) or type the operation: ");
+            operation = scanner.next().toLowerCase();
+
+            //process
             switch (operation) {
-                case '+':
+                case "+":
+                case "addition":
                     result = input1 + input2;
                     break;
-                case '-':
+                case "-":
+                case "subtraction":
                     result = input1 - input2;
                     break;
-                case '*':
+                case "*":
+                case "multiplication":
                     result = input1 * input2;
                     break;
-                case '/':
+                case "/":
+                case "division":
                     if (input2 == 0) {
                         System.out.println("Error! Division by zero is not allowed.");
                         continue;
@@ -69,7 +75,7 @@ public class ABANTE_P2 {
             }
             System.out.println("The result is: " + result);
 
-            // Ask if the user wants to perform another operation
+            //loop
             System.out.print("Would you like to perform another operation? (y/n): ");
             choice = scanner.next().toLowerCase();
 
@@ -80,3 +86,4 @@ public class ABANTE_P2 {
         System.out.println("Thank You!");
     }
 }
+
